@@ -1,0 +1,481 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-07T00:00:00Z",
+  "description": "Centralized menu configuration for Admin and Karyawan roles",
+  "roles": {
+    "admin": {
+      "label": "Administrator",
+      "description": "Full access to all system features",
+      "menus": [
+        {
+          "id": "dashboard",
+          "label": "Dashboard",
+          "path": "/admin/dashboard",
+          "icon": "LayoutDashboard",
+          "component": "DashboardAdmin",
+          "order": 1,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Overview sistem dan statistik",
+            "category": "main",
+            "requiredFields": []
+          }
+        },
+        {
+          "id": "karyawan",
+          "label": "Karyawan",
+          "path": "/admin/karyawan",
+          "icon": "Users",
+          "component": "Karyawan",
+          "order": 2,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true
+          },
+          "metadata": {
+            "description": "Kelola data karyawan",
+            "category": "main",
+            "requiredFields": ["nama", "email", "role"]
+          },
+          "relatedMenus": ["datadiri"]
+        },
+        {
+          "id": "absensi",
+          "label": "Absensi",
+          "path": "/admin/absensi",
+          "icon": "Clock",
+          "component": "AbsensiAdmin",
+          "order": 3,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true
+          },
+          "metadata": {
+            "description": "Kelola absensi karyawan",
+            "category": "main",
+            "requiredFields": ["nama", "tanggal", "status"]
+          },
+          "relatedMenus": ["absensi"]
+        },
+        {
+          "id": "cuti",
+          "label": "Cuti",
+          "path": "/admin/cuti",
+          "icon": "Calendar",
+          "component": "CutiKaryawan",
+          "order": 4,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true
+          },
+          "metadata": {
+            "description": "Kelola cuti karyawan",
+            "category": "main",
+            "requiredFields": ["nama", "tanggalMulai", "tanggalSelesai"]
+          },
+          "relatedMenus": ["cuti"]
+        },
+        {
+          "id": "gaji",
+          "label": "Gaji",
+          "path": "/admin/gaji",
+          "icon": "DollarSign",
+          "component": "Gaji",
+          "order": 5,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true
+          },
+          "metadata": {
+            "description": "Kelola data gaji",
+            "category": "main",
+            "requiredFields": ["nama", "gajiPokok", "tunjangan"]
+          },
+          "relatedMenus": ["slipgaji"]
+        },
+        {
+          "id": "slip-gaji",
+          "label": "Slip Gaji",
+          "path": "/admin/slip-gaji",
+          "icon": "FileText",
+          "component": "SlipGajiAdmin",
+          "order": 6,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Generate slip gaji karyawan",
+            "category": "main",
+            "requiredFields": ["karyawanId", "bulan", "tahun"]
+          },
+          "relatedMenus": ["slipgaji"]
+        },
+        {
+          "id": "treatment",
+          "label": "Treatment",
+          "path": "/admin/treatment",
+          "icon": "Stethoscope",
+          "component": "Treatment",
+          "order": 7,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": true,
+            "delete": true
+          },
+          "metadata": {
+            "description": "Kelola treatment karyawan",
+            "category": "main",
+            "requiredFields": ["namaKaryawan", "jenisLayanan", "tanggal"]
+          }
+        }
+      ],
+      "settingsMenus": [
+        {
+          "id": "profile",
+          "label": "Profil",
+          "path": "/admin/profile",
+          "icon": "User",
+          "component": "AdminProfileSettings",
+          "order": 1,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": true,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Kelola profil admin",
+            "category": "settings"
+          }
+        },
+        {
+          "id": "security",
+          "label": "Keamanan",
+          "path": "/admin/security",
+          "icon": "Lock",
+          "component": "AdminSecurity",
+          "order": 2,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": true,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Pengaturan keamanan akun",
+            "category": "settings"
+          }
+        },
+        {
+          "id": "help",
+          "label": "Bantuan",
+          "path": "/admin/help",
+          "icon": "HelpCircle",
+          "component": "AdminHelp",
+          "order": 3,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Panduan dan FAQ",
+            "category": "settings"
+          }
+        }
+      ]
+    },
+    "karyawan": {
+      "label": "Karyawan",
+      "description": "Limited access to personal and related data",
+      "menus": [
+        {
+          "id": "dashboard",
+          "label": "Dashboard",
+          "path": "/karyawan/dashboard",
+          "icon": "LayoutDashboard",
+          "component": "DashboardKaryawan",
+          "order": 1,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Overview pribadi dan statistik",
+            "category": "main",
+            "requiredFields": []
+          }
+        },
+        {
+          "id": "datadiri",
+          "label": "Data Diri",
+          "path": "/karyawan/datadiri",
+          "icon": "FileText",
+          "component": "DataDiri",
+          "order": 2,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": true,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Lihat dan edit data pribadi",
+            "category": "main",
+            "requiredFields": ["nama", "email"]
+          },
+          "relatedMenus": ["karyawan"],
+          "linkedAdminMenu": "karyawan"
+        },
+        {
+          "id": "absensi",
+          "label": "Absensi",
+          "path": "/karyawan/absensi",
+          "icon": "Clock",
+          "component": "AbsensiKaryawan",
+          "order": 3,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Lihat riwayat absensi",
+            "category": "main",
+            "requiredFields": []
+          },
+          "relatedMenus": ["absensi"],
+          "linkedAdminMenu": "absensi"
+        },
+        {
+          "id": "cuti",
+          "label": "Cuti",
+          "path": "/karyawan/cuti",
+          "icon": "Calendar",
+          "component": "CutiKaryawan",
+          "order": 4,
+          "permissions": {
+            "view": true,
+            "create": true,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Lihat dan ajukan cuti",
+            "category": "main",
+            "requiredFields": ["tanggalMulai", "tanggalSelesai"]
+          },
+          "relatedMenus": ["cuti"],
+          "linkedAdminMenu": "cuti"
+        },
+        {
+          "id": "slipgaji",
+          "label": "Slip Gaji",
+          "path": "/karyawan/slipgaji",
+          "icon": "FileText",
+          "component": "SlipGajiKaryawan",
+          "order": 5,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Download slip gaji bulanan",
+            "category": "main",
+            "requiredFields": []
+          },
+          "relatedMenus": ["slip-gaji"],
+          "linkedAdminMenu": "slip-gaji"
+        }
+      ],
+      "settingsMenus": [
+        {
+          "id": "profile",
+          "label": "Profil",
+          "path": "/karyawan/profile",
+          "icon": "User",
+          "component": "KaryawanProfileSettings",
+          "order": 1,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": true,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Kelola profil pribadi",
+            "category": "settings"
+          }
+        },
+        {
+          "id": "security",
+          "label": "Keamanan",
+          "path": "/karyawan/security",
+          "icon": "Lock",
+          "component": "KaryawanSecurity",
+          "order": 2,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": true,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Pengaturan keamanan akun",
+            "category": "settings"
+          }
+        },
+        {
+          "id": "help",
+          "label": "Bantuan",
+          "path": "/karyawan/help",
+          "icon": "HelpCircle",
+          "component": "KaryawanHelp",
+          "order": 3,
+          "permissions": {
+            "view": true,
+            "create": false,
+            "edit": false,
+            "delete": false
+          },
+          "metadata": {
+            "description": "Panduan dan FAQ",
+            "category": "settings"
+          }
+        }
+      ]
+    }
+  },
+  "apiEndpoints": {
+    "karyawan": {
+      "baseUrl": "/api/karyawan",
+      "methods": {
+        "list": "GET /api/karyawan",
+        "get": "GET /api/karyawan/:id",
+        "create": "POST /api/karyawan",
+        "update": "PUT /api/karyawan/:id",
+        "delete": "DELETE /api/karyawan/:id"
+      }
+    },
+    "absensi": {
+      "baseUrl": "/api/absensi",
+      "methods": {
+        "list": "GET /api/absensi",
+        "get": "GET /api/absensi/:id",
+        "create": "POST /api/absensi",
+        "update": "PUT /api/absensi/:id",
+        "delete": "DELETE /api/absensi/:id"
+      }
+    },
+    "cuti": {
+      "baseUrl": "/api/cuti",
+      "methods": {
+        "list": "GET /api/cuti",
+        "get": "GET /api/cuti/:id",
+        "create": "POST /api/cuti",
+        "update": "PUT /api/cuti/:id",
+        "delete": "DELETE /api/cuti/:id"
+      }
+    },
+    "gaji": {
+      "baseUrl": "/api/gaji",
+      "methods": {
+        "list": "GET /api/gaji",
+        "get": "GET /api/gaji/:id",
+        "create": "POST /api/gaji",
+        "update": "PUT /api/gaji/:id",
+        "delete": "DELETE /api/gaji/:id"
+      }
+    },
+    "slipGaji": {
+      "baseUrl": "/api/slip-gaji",
+      "methods": {
+        "list": "GET /api/slip-gaji",
+        "get": "GET /api/slip-gaji/:id",
+        "create": "POST /api/slip-gaji",
+        "update": "PUT /api/slip-gaji/:id",
+        "delete": "DELETE /api/slip-gaji/:id"
+      }
+    },
+    "treatment": {
+      "baseUrl": "/api/treatment",
+      "methods": {
+        "list": "GET /api/treatment",
+        "get": "GET /api/treatment/:id",
+        "create": "POST /api/treatment",
+        "update": "PUT /api/treatment/:id",
+        "delete": "DELETE /api/treatment/:id"
+      }
+    }
+  },
+  "permissionMatrix": {
+    "admin": {
+      "karyawan": ["view", "create", "edit", "delete"],
+      "absensi": ["view", "create", "edit", "delete"],
+      "cuti": ["view", "create", "edit", "delete"],
+      "gaji": ["view", "create", "edit", "delete"],
+      "slip-gaji": ["view", "create"],
+      "treatment": ["view", "create", "edit", "delete"]
+    },
+    "karyawan": {
+      "datadiri": ["view", "edit"],
+      "absensi": ["view"],
+      "cuti": ["view", "create"],
+      "slipgaji": ["view"]
+    }
+  },
+  "syncConfig": {
+    "enabled": true,
+    "updateInterval": 30000,
+    "cacheStrategy": "smart",
+    "menus": [
+      {
+        "adminMenu": "karyawan",
+        "karyawanMenu": "datadiri",
+        "syncType": "bidirectional",
+        "description": "Admin karyawan menu synced dengan karyawan datadiri"
+      },
+      {
+        "adminMenu": "absensi",
+        "karyawanMenu": "absensi",
+        "syncType": "one-way",
+        "description": "Admin absensi updates karyawan absensi"
+      },
+      {
+        "adminMenu": "cuti",
+        "karyawanMenu": "cuti",
+        "syncType": "bidirectional",
+        "description": "Admin dan karyawan cuti synced"
+      },
+      {
+        "adminMenu": "slip-gaji",
+        "karyawanMenu": "slipgaji",
+        "syncType": "one-way",
+        "description": "Admin slip-gaji updates karyawan slipgaji"
+      }
+    ]
+  }
+}
